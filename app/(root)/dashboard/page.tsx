@@ -6,7 +6,7 @@ const page = async () => {
   return (
     <div>
       <br />
-      <h1 className="text-4xl font-semibold">
+      <h1 className="text-4xl font-semibold ml-2">
         {" "}
         welcome to fortinix, you are logged in as{" "}
         <span className="text-blue-600">{session?.user.email}</span>
