@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "FortinixAI",
-  description: "Real-time AI voice interview platform that simulates live interviews using intelligent voice agents",
+  description:
+    "Real-time AI voice interview platform that simulates live interviews using intelligent voice agents",
 };
 
 export default function RootLayout({
