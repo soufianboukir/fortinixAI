@@ -81,7 +81,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
               onChange={e => setEmail(e.target.value)}
             />
             <Button
-              className="cursor-pointer border bg-white hover:bg-white/40"
+              variant="outline"
+              className="cursor-pointer border hover:bg-white/40"
               disabled={!email || loading.email}
               type="submit"
             >

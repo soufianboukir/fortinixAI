@@ -10,9 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+      NEXT_API_BASE_URL: ${{ secrets.NEXT_API_BASE_URL }}
+      NEXT_PUBLIC_APP_NAME: ${{ secrets.NEXT_PUBLIC_APP_NAME }}
+
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
       EMAIL_SERVER_HOST: smtp.gmail.com
