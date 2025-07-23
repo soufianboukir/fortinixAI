@@ -14,6 +14,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('')
     if (!email) {
       setError("Email is required");
       return;
@@ -24,12 +25,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
       if (!res?.error && res?.status === 200) {
         setSuccess(true);
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
+    } catch {
         setError("An error occured. try again");
-      }
     } finally {
       setLoading({ google: false, email: false });
     }

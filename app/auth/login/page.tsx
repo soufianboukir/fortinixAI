@@ -20,7 +20,7 @@ export default function LoginPage() {
           <div className="w-[100%] rounded-md border px-6 py-12 shadow-md md:max-w-md">
             <LoginForm />
             <br />
-            <p className="text-xs text-black/50">
+            <p className="text-xs dark:text-white/50 text-black/50">
               By clicking continue, you agree to our{" "}
               <Link href={"/terms-of-service"} className="underline">
                 Terms of Service
