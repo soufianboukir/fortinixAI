@@ -10,6 +10,8 @@ import clientPromise from "./mongo";
 import Email from "next-auth/providers/email";
 import { Adapter } from "next-auth/adapters";
 
+
+
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
