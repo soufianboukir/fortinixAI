@@ -6,14 +6,10 @@ import { Button } from "@/components/ui/button";
 
 function Dashboard() {
     return (
-      <div className="relative w-full">
-        <div className="absolute right-8 z-10">
-          <Lottie animationData={AnimateRobot} loop className="w-70 h-70" />
-        </div>
-
-        <div className="bg-gradient-to-b from-[#d4dfff] to-[#ffffff] dark:from-[#064ba6] dark:to-[#000000] rounded-2xl px-10 py-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-0">
-          <div className="space-y-6">
-            <h1 className="text-3xl font-bold leading-tight">
+      <div>
+        <div className="bg-gradient-to-b from-[#d4dfff] to-[#ffffff] dark:from-[#064ba6] dark:to-[#000000] rounded-2xl px-10 py-8 md:grid-cols-2 gap-8 items-center relative z-0 flex justify-between">
+          <div className="space-y-6 w-[100%] md:w-[50%]">
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold leading-tight">
               Get inteview ready with <span className="text-blue-500">FortinixAI </span>
               Powered practice & Feedback
             </h1>
@@ -29,12 +25,15 @@ function Dashboard() {
               </Button>
             </div>
           </div>
-          <div className="hidden md:block"></div>
+          
+          <div className=" z-10 hidden md:block">
+            <Lottie animationData={AnimateRobot} loop className="lg:w-70 md:w-65 md:h-65 lg:h-70" />
+          </div>
         </div>
 
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <h1 className="text-xl font-semibold">Already taked inteview by users will be showed here</h1>
-        </div>
+        </div> */}
     </div>
     )
 }

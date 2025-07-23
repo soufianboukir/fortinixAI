@@ -68,7 +68,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props} className="ml-20 border-l border-l-black/20 dark:border-l-white/20">
+    <Sidebar variant="inset" {...props} className="md:ml-20 border-l border-l-black/20 dark:border-l-white/20">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
