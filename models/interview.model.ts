@@ -20,5 +20,5 @@ const InterviewSchema = new Schema<IInterview>({
     createdAt: { type: Date, default: Date.now }
 })
 
-const Interview = models.InterviewPosition || model<IInterview>('Interview', InterviewSchema)
+const Interview = models.Interview || model<IInterview>('Interview', InterviewSchema)
 export default Interview;

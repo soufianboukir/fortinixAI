@@ -8,9 +8,12 @@ import { sendWelcomeEmail } from "./mail";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./mongo";
 import Email from "next-auth/providers/email";
+import { Adapter } from "next-auth/adapters";
+
+
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,

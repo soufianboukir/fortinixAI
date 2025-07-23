@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { askGemini } from "@/lib/gemeni";
-// import Interview from "@/models/interview.model";
+import Interview from "@/models/interview.model";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 export async function GET(){
@@ -11,13 +11,12 @@ export async function GET(){
     }
 }
 
-
 export async function POST(request: NextRequest) {
     const {type, role, level, amount, techStack } = await request.json()
 
     try{ 
         const session = await getServerSession(authOptions)
-        if(session?.user.email){
+        if(!session?.user.email){
             return NextResponse.json({
                 "message": "Unauthorized"
             }, { status: 401})
@@ -38,14 +37,26 @@ export async function POST(request: NextRequest) {
 
         const response = await askGemini(prompt);
 
-        // await Interview.create({
+        const parsedQuestions = JSON.parse(response);
 
-        // })
-        NextResponse.json({
-            "message": "success",
-            "result": response
+        const interview = await Interview.create({
+            user: session?.user.id,
+            type,
+            role,
+            level,
+            amount,
+            techStack,
+            questions: parsedQuestions,
+        });
+
+        return NextResponse.json({
+            message: 'success',
+            interview,
+        });
+    }catch(error){
+        console.log(error);
+        return NextResponse.json({
+            "message": "An error occured"
         })
-    }catch{
-
     }
 }
