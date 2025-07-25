@@ -60,7 +60,11 @@ const VapiWidget: React.FC<VapiWidgetProps> = ({ }) => {
 
   const startCall = () => {
     if (vapi) {
-      vapi.start('1cdc890f-b1fa-460b-83e2-d4ed77654771');
+      vapi.start('1cdc890f-b1fa-460b-83e2-d4ed77654771',{
+        variableValues: {
+          'username': 'soufian' 
+        }
+      });
     }
   };
 
