@@ -17,6 +17,7 @@ type Message = {
 
 
 
+
 function Chat() {
   const [message,setMessage] = useState('')
   const [loading,setLoading] = useState(false)
@@ -47,26 +48,31 @@ function Chat() {
     }
   }
 
-  const handleCopy = async (text: string, index: number, type: 'text' | 'code' | 'like' | 'dislike') => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast.success('Copied to clipboard')
-      setCopy({type, index})
-      setTimeout(() => {
-        setCopy({index:0,  type: ''})
-      }, 2000);
+  const handleEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!disableSend && !loading) {
+        handleSend();
+      }
+    }
+  };
+
+  const handleAction = async (index: number, type: 'text' | 'code' | 'like' | 'dislike', text?: string) => {    
+    try {      
+      if( type === 'code' || type === 'text' ){
+        await navigator.clipboard.writeText(text!);
+        toast.success("Copied to cliboard")
+        setCopy({type, index})
+        setTimeout(() => {
+          setCopy({index:0,  type: ''})
+        }, 2000);
+      }else{
+        toast.success('Thank you for your feedback')
+      }
     } catch (err) {
       console.error('Failed to copy:', err);
     }
   };
-
-  const handleLike = () =>{
-
-  }
-
-  const handleDislike = () =>{
-
-  }
   
   useEffect(() => {
     if (!loading) return;
@@ -93,7 +99,7 @@ function Chat() {
 
 
         {messages && messages.length ? (
-          <div className='h-[75vh] overflow-y-scroll scrollbar-hide w-[90%] md:w-[70%] mx-auto'>
+          <div className='h-[75vh] overflow-y-scroll scrollbar-hide w-[100%] md:w-[70%] mx-auto'>
             {messages.map((mssg: Message, index: number) => (
               <div key={index} className="flex flex-col mb-6">
                 <div className={`flex ${mssg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -104,7 +110,7 @@ function Chat() {
                         width={30}
                         height={30}
                         alt={'user logo'}
-                        className="rounded-full"
+                        className="rounded-full md:block hidden"
                       />
                     )}
                     <div className="flex flex-col">
@@ -122,7 +128,7 @@ function Chat() {
                                       <CopyCheck className='w-4 h-4'/>
                                       <span>Copied</span>
                                     </div>
-                                    : <button className='flex items-center gap-2 cursor-pointer' onClick={() => handleCopy(block,index,'code')}>
+                                    : <button className='flex items-center gap-2 cursor-pointer' onClick={() => handleAction(index,'code',block)}>
                                       <Copy className='w-4 h-4'/>
                                       <span>Copy</span>
                                     </button>
@@ -142,10 +148,10 @@ function Chat() {
                             copy.type === 'text' && index === copy.index ?
                               <CopyCheck className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70 text-green-600" />
                             :
-                            <Copy className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={() => handleCopy(mssg.content,index,'text')}/>
+                            <Copy className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={() => handleAction(index,'text',mssg.content)}/>
                           }
-                          <ThumbsUp className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={handleLike}/>
-                          <ThumbsDown className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={handleDislike}/>
+                          <ThumbsUp className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={() => handleAction(index,'like')}/>
+                          <ThumbsDown className="w-4 h-4 stroke-3 cursor-pointer hover:opacity-70" onClick={() => handleAction(index,'dislike')}/>
                         </div>
                       )}
                     </div>
@@ -154,7 +160,7 @@ function Chat() {
               </div>
             ))}
             {
-              loading && <div className=''>
+              loading && <div className='mb-3'>
                   <div className='flex justify-start gap-2 items-center font-semibold font-mono'>
                     <Image
                       src={'/icons/app-logo.png'}
@@ -167,15 +173,15 @@ function Chat() {
                   </div>
                 </div>
             }
+          <div ref={messagesEndRef}/>
           </div>
         ) : null}
 
-        <div ref={messagesEndRef}/>
         
 
 
         <div className="w-[90%] md:w-[60%] mx-auto relative">
-          <Textarea placeholder="Type somthing..." className="text-sm"  rows={4} value={message} onChange={(e) => setMessage(e.target.value)}/>
+          <Textarea placeholder="Type somthing..." onKeyDown={handleEnterPressed} className="text-sm"  rows={4} value={message} onChange={(e) => setMessage(e.target.value)}/>
           <Button className="absolute end-3 bottom-3 rounded-full" disabled={disableSend || loading} onClick={handleSend}>
               {
                 loading ? <Loader className='animate-spin'/>
