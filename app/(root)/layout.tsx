@@ -17,7 +17,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
             <SidebarInset>
                 <header className="flex h-16 shrink-0 justify-between lg:justify-between px-4 items-center gap-2 border-b border-b-black/20 dark:border-b-white/20 backdrop-blur">
                     <div className='flex gap-2 items-center font-mono font-semibold'>
-                        FortinixAI
+                        FortinixAI { session?.user.name && <span>| Logged in as <span className='text-blue-500'>{session?.user.name}</span></span>}
                     </div>
                     <div className="flex items-center gap-4">
                         {

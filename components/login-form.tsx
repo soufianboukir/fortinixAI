@@ -13,6 +13,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setSuccess(false)
     e.preventDefault();
     setError('')
     if (!email) {
@@ -21,7 +22,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
     }
     setLoading({ google: false, email: true });
     try {
-      const res = await signIn("email", { email, redirect: false, callbackUrl: "/dashboard" });
+      const res = await signIn("email", { email, redirect: false, callbackUrl: "/" });
       if (!res?.error && res?.status === 200) {
         setSuccess(true);
       }
@@ -34,12 +35,12 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
 
   const handleAuthWithGoogle = async () => {
     setLoading({ google: true, email: false });
-    await signIn("google", { callbackUrl: "/dashboard" });
+    await signIn("google", { callbackUrl: "/" });
     setLoading({ google: false, email: false });
   };
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleSubmit}>
+    <form className={cn("flex flex-col font-mono gap-6", className)} {...props} onSubmit={handleSubmit}>
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
@@ -75,7 +76,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
               type="email"
               placeholder="e.g, your.mail@example.com"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => {setEmail(e.target.value); setSuccess(false)}}
             />
             <Button
               variant="outline"
