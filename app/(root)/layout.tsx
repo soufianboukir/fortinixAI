@@ -1,24 +1,22 @@
 'use client'
 
-import { AppSidebar } from '@/components/app-sidebar';
 import { ModeToggle } from '@/components/theme-toggle';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { SidebarInset, SidebarProvider, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
-import { AvatarImage } from '@radix-ui/react-avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { LogOut } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react'
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
     const { data: session } = useSession()
-    const { isMobile } = useSidebar()
 
     return (
         <>
-            <AppSidebar />
             <SidebarInset>
-                <header className="flex h-16 shrink-0 justify-between lg:justify-end px-4 items-center gap-2 border-b border-b-black/20 dark:border-b-white/20">
-                    {isMobile && <SidebarTrigger className="-ml-1" />}
+                <header className="flex h-16 shrink-0 justify-between lg:justify-between px-4 items-center gap-2 border-b border-b-black/20 dark:border-b-white/20">
+                    <div className='flex gap-2 items-center font-mono font-semibold'>
+                        FortinixAI
+                    </div>
                     <div className="flex items-center gap-4">
                         <LogOut onClick={() => signOut()} className='cursor-pointer'/>
                         <ModeToggle />
@@ -28,7 +26,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                         </Avatar>
                     </div>
                 </header>
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-0 mt-6">
+                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                     {children}
                 </div>
             </SidebarInset>
