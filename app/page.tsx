@@ -104,7 +104,7 @@ function Chat() {
                 <LayoutContent>
                   {
                     messages.length === 0 && <div className="flex justify-center mt-20 mb-10">
-                      <h1 className="text-3xl font-mono font-semibold text-center">Hi <span className=''>{session?.user.name}</span>, how can I assist you today?</h1>
+                      <h1 className="text-3xl font-mono font-semibold text-center">Hi <span className=''>{session?.user.name}</span>, what would you like to talk about?</h1>
                     </div>
                   }
                   {messages && messages.length ? (
@@ -193,6 +193,15 @@ function Chat() {
                                   </div>
                                 )}
                               </div>
+                              {mssg.role === 'user' && session?.user.image && (
+                                <Image
+                                  src={session.user.image}
+                                  width={30}
+                                  height={30}
+                                  alt={'user logo'}
+                                  className="rounded-full md:block hidden"
+                                />
+                              )}
                             </div>
                           </div>
                         </div>
