@@ -1,38 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FortinixAI
 
-## Getting Started
+**An intelligent chatbot powered by Google Gemini, designed to have natural, contextual conversations that assist users effectively.**
 
-First, run the development server:
+<img width="2555" height="1259" alt="Screenshot from 2025-07-27 00-34-08" src="https://github.com/user-attachments/assets/c58b1dff-47b5-4d0e-8d7b-3cbea85307a1" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 15  
+- **Language:** TypeScript  
+- **AI Engine:** Google Gemini  
+- **Styling:** Tailwind CSS  
+- **API:** Axios
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+### Core Capabilities
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Intelligent chatbot powered by Google Gemini  
+- Natural and contextual conversational experience  
+- Personalized responses with developer attribution  
+- Real-time messaging interaction  
+- Easy integration with existing web applications  
+- Light and dark mode support  
+- Responsive design for desktop and mobile
+- Authentication with google or via a magic link
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository and install dependencies
+   ```bash
+   git clone https://github.com/soufianboukr/fortinixAI.git
+   cd fortinixAI
+   npm install
+   cp .env.example .env.local
+   npm run dev
+   ```
+2. Set up you .env.local with real values
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# ai-interviewer
+built with ❤️ by **soufian**.
