@@ -20,8 +20,8 @@ export async function sendWelcomeEmail({ to, name, magicLink }: SendWelcomeEmail
   const htmlContent = `
           <p style="font-size: 16px; line-height: 1.5;">
             Hi <strong>${name}</strong>,<br/><br/>
-            We're thrilled to have you on board! Your journey to building and exploring real-time AI voice interview platforms—powered by intelligent voice agents—starts now.
-          </p>
+              We're excited to have you on board! You're now ready to experience an intelligent chatbot powered by Google Gemini—built for natural, contextual conversations that feel truly human.
+            </p>
 
           ${
             magicLink
@@ -36,13 +36,11 @@ export async function sendWelcomeEmail({ to, name, magicLink }: SendWelcomeEmail
           }
 
           <p style="font-size: 16px; line-height: 1.5;">
-            If you have any questions or need help, just reply to this email or visit our
-            <a href="${process.env.NEXT_PUBLIC_APP_URL}/help" style="color: blue; text-decoration: none;">Help Center</a>.
+            If you have any questions or need help, just reply to this email.
           </p>
 
           <p style="font-size: 14px;">
-            by developers,<br/>
-            The ${appName} Team
+            by developer, soufian<br/>
           </p>
   `;
 

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FortinixAI",
   description:
-    "Real-time AI voice interview platform that simulates live interviews using intelligent voice agents",
+    " An intelligent chatbot powered by Google Gemini, designed to have natural, contextual conversations ",
 };
 
 export default function RootLayout({
@@ -31,11 +31,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <ThemeProvider 
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange>
-            {children}
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange>
+              {children}
             <Toaster />
           </ThemeProvider>
         </Providers>

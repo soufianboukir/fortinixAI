@@ -2,7 +2,6 @@
 
 import { LoginForm } from "@/components/login-form";
 import Lottie from "lottie-react";
-import Image from "next/image";
 import Link from "next/link";
 import AnimatedData from "@/lotties/login-page-animation.json";
 
@@ -11,8 +10,7 @@ export default function LoginPage() {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <a href="#" className="flex items-center gap-2 font-semibold">
-            <Image src={"/icons/app-logo.png"} width={28} height={28} alt="app logo" />
+          <a href="" className="flex items-center gap-2 font-semibold font-mono">
             <span>FortinixAI</span>
           </a>
         </div>
@@ -20,16 +18,11 @@ export default function LoginPage() {
           <div className="w-[100%] rounded-md border px-6 py-12 shadow-md md:max-w-md">
             <LoginForm />
             <br />
-            <p className="text-xs dark:text-white/50 text-black/50">
+            <p className="text-xs dark:text-white/50 text-black/50 text-center">
               By clicking continue, you agree to our{" "}
               <Link href={"/terms-of-service"} className="underline">
                 Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link href={"/privacy-policy"} className="underline">
-                Privacy Policy
-              </Link>
-              .
+              </Link>{" "}.
             </p>
           </div>
         </div>
