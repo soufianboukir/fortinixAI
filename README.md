@@ -2,7 +2,7 @@
 
 **An intelligent chatbot powered by Google Gemini, designed to have natural, contextual conversations that assist users effectively.**
 
-<img width="2555" height="1259" alt="Screenshot from 2025-07-27 00-34-08" src="https://github.com/user-attachments/assets/c58b1dff-47b5-4d0e-8d7b-3cbea85307a1" />
+<img width="2555" height="1259" alt="Screenshot from 2025-07-27 00-50-14" src="https://github.com/user-attachments/assets/2845e8b5-500e-483f-8374-8e2b1668d7c7" />
 
 ---
 
