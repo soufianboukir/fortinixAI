@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-toggle";
 import { Providers } from "@/components/providers";
 import { Toaster } from "sonner";
+import { LayoutContent } from "./(root)/layout";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +34,16 @@ export default function RootLayout({
         <Providers>
           <ThemeProvider 
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange>
-            {children}
+            <div className='flex md:mx-20 border-l dark:border-l-white/20 border-l-black/20 border-r border-r-black/20 dark:border-r-white/20'>
+              <SidebarProvider>
+                <LayoutContent>
+                    {children}
+                </LayoutContent>
+              </SidebarProvider>
+            </div>
             <Toaster />
           </ThemeProvider>
         </Providers>
