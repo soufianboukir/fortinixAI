@@ -31,14 +31,16 @@ function Chat() {
   const [dots, setDots] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { data: session, status } = useSession()
-
+  const userName = session?.user.name
 
   const handleSend = async () =>{
     try{
       setLoading(true)
       setMessage('')
+      
       setMessages((prev) => [...prev, { role: 'user', content: message }]);
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`,{prompt: `
+        ${userName ? `The current user interacting with you is named ${userName}. Please include their name naturally in your responses.` : ''}
         You are a helpful and intelligent chatbot powered by Google Gemini, created by Soufian Boukir (soufianboukir.com).
         Your job is to have natural, contextual conversations with users.
         If someone asks who built you, mention Soufian Boukir as your developer and refer them to his website.
