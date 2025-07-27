@@ -39,13 +39,16 @@ function Chat() {
       setMessage('')
       
       setMessages((prev) => [...prev, { role: 'user', content: message }]);
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`,{prompt: `
-        ${userName ? `The current user interacting with you is named ${userName}. Please include their name naturally in your responses.` : ''}
-        You are a helpful and intelligent chatbot powered by Google Gemini, created by Soufian Boukir (soufianboukir.com).
-        Your job is to have natural, contextual conversations with users.
-        If someone asks who built you, mention Soufian Boukir as your developer and refer them to his website.
-        Now respond to this user message: "${message}"
-      `})
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`, {
+        prompt: `
+          ${userName ? `The current user interacting with you is named ${userName}. Please include their name naturally in your responses.` : ''}
+          You are a helpful and intelligent chatbot powered by Google Gemini, created by Soufian Boukir (soufianboukir.com).
+          Your job is to have natural, contextual conversations with users.
+          ONLY mention that you were developed by Soufian Boukir and refer to soufianboukir.com IF the user explicitly asks who built you.
+          Otherwise, do NOT mention the developer or the website in your responses.
+          Now respond to this user message: "${message}"
+        `
+      });
       if(res.status === 200){
         setMessages((prev) => [...prev, { role: 'ai', content: res.data.response }]);
       }
